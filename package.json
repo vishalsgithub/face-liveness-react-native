@@ -1,0 +1,147 @@
+{
+  "name": "react-native-face-liveness",
+  "version": "1.0.0",
+  "description": "On-device face liveness (anti-spoofing) detection for React Native. Drop-in camera component that tells real faces from photos, screens and masks, powered by ncnn. New Architecture.",
+  "main": "./lib/module/index.js",
+  "types": "./lib/typescript/src/index.d.ts",
+  "exports": {
+    ".": {
+      "react-native-face-liveness-source": "./src/index.tsx",
+      "types": "./lib/typescript/src/index.d.ts",
+      "default": "./lib/module/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "lib",
+    "android",
+    "ios",
+    "cpp",
+    "models",
+    "*.podspec",
+    "react-native.config.js",
+    "!ios/build",
+    "!android/build",
+    "!android/gradle",
+    "!android/gradlew",
+    "!android/gradlew.bat",
+    "!android/local.properties",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "!**/.*"
+  ],
+  "scripts": {
+    "example": "yarn workspace react-native-face-liveness-example",
+    "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
+    "prepare": "bob build",
+    "typecheck": "tsc",
+    "test": "jest"
+  },
+  "keywords": [
+    "react-native",
+    "ios",
+    "android",
+    "liveness",
+    "anti-spoofing",
+    "face-detection",
+    "face-liveness",
+    "camera",
+    "new-architecture",
+    "fabric",
+    "turbo-module"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vishalsgithub/face-liveness-react-native.git"
+  },
+  "author": "vish solanki <solankivishal234@gmail.com> (https://github.com/vishalsgithub)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/vishalsgithub/face-liveness-react-native/issues"
+  },
+  "homepage": "https://github.com/vishalsgithub/face-liveness-react-native#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@react-native/babel-preset": "0.86.2",
+    "@react-native/jest-preset": "0.86.2",
+    "@types/react": "^19.2.0",
+    "del-cli": "^7.0.0",
+    "jest": "^29.7.0",
+    "react": "19.2.3",
+    "react-native": "0.86.2",
+    "react-native-builder-bob": "^0.43.1",
+    "turbo": "^2.10.8",
+    "typescript": "^6.0.3"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": ">=0.80.0"
+  },
+  "workspaces": [
+    "example"
+  ],
+  "packageManager": "yarn@4.11.0",
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  },
+  "codegenConfig": {
+    "name": "FaceLivenessSpec",
+    "type": "all",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "com.faceliveness"
+    },
+    "ios": {
+      "modulesProvider": {
+        "FaceLiveness": "FaceLivenessModule"
+      },
+      "components": {
+        "FaceLivenessCameraView": {
+          "className": "FaceLivenessCameraComponentView"
+        }
+      }
+    }
+  },
+  "jest": {
+    "preset": "@react-native/jest-preset",
+    "testEnvironmentOptions": {
+      "customExportConditions": [
+        "require",
+        "react-native",
+        "<%- project.sourceCondition -%>"
+      ]
+    },
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/node_modules",
+      "<rootDir>/lib/"
+    ]
+  },
+  "create-react-native-library": {
+    "type": "fabric-view",
+    "languages": "kotlin-objc",
+    "tools": [
+      "jest"
+    ],
+    "version": "0.63.1"
+  }
+}

@@ -1,0 +1,82 @@
+buildscript {
+  ext.FaceLiveness = [
+    kotlinVersion: "2.0.21",
+    minSdkVersion: 24,
+    compileSdkVersion: 36
+  ]
+
+  ext.getExtOrDefault = { prop ->
+    if (rootProject.ext.has(prop)) {
+      return rootProject.ext.get(prop)
+    }
+
+    return FaceLiveness[prop]
+  }
+
+  repositories {
+    google()
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath "com.android.tools.build:gradle:8.7.2"
+    // noinspection DifferentKotlinGradleVersion
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${getExtOrDefault('kotlinVersion')}"
+  }
+}
+
+
+apply plugin: "com.android.library"
+
+if (project.extensions.findByName("kotlin") == null) {
+  apply plugin: "kotlin-android"
+}
+
+
+apply plugin: "com.facebook.react"
+
+android {
+  namespace "com.faceliveness"
+
+  compileSdkVersion getExtOrDefault("compileSdkVersion")
+
+  // Build with the app's NDK so no extra NDK download is needed.
+  def appNdkVersion = rootProject.findProject(":app")?.extensions?.findByName("android")?.ndkVersion
+  if (appNdkVersion) {
+    ndkVersion appNdkVersion
+  }
+
+  defaultConfig {
+    minSdkVersion getExtOrDefault("minSdkVersion")
+  }
+
+  // Engine + JNI bridge; ncnn is downloaded once by CMake (see CMakeLists.txt).
+  externalNativeBuild {
+    cmake {
+      path "CMakeLists.txt"
+    }
+  }
+
+  // Models are shared with iOS: models/face_liveness/** -> assets/face_liveness/**.
+  sourceSets {
+    main {
+      assets.srcDirs += "${projectDir}/../models"
+    }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+}
+
+def cameraxVersion = "1.5.3"
+
+dependencies {
+  implementation "com.facebook.react:react-android"
+  implementation "androidx.camera:camera-core:$cameraxVersion"
+  implementation "androidx.camera:camera-camera2:$cameraxVersion"
+  implementation "androidx.camera:camera-lifecycle:$cameraxVersion"
+  implementation "androidx.camera:camera-view:$cameraxVersion"
+  implementation "androidx.exifinterface:exifinterface:1.4.2"
+}
