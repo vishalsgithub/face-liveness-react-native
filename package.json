@@ -1,5 +1,5 @@
 {
-  "name": "react-native-face-liveness",
+  "name": "@solankivishal/react-native-face-liveness",
   "version": "1.0.0",
   "description": "On-device face liveness (anti-spoofing) detection for React Native. Drop-in camera component that tells real faces from photos, screens and masks, powered by ncnn. New Architecture.",
   "main": "./lib/module/index.js",

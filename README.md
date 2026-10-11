@@ -1,4 +1,6 @@
-# react-native-face-liveness
+# @solankivishal/react-native-face-liveness
+
+[![npm](https://img.shields.io/npm/v/@solankivishal/react-native-face-liveness.svg)](https://www.npmjs.com/package/@solankivishal/react-native-face-liveness)
 
 On-device **face liveness (anti-spoofing) detection** for React Native. It checks whether the face in front of the camera is real or a presentation attack (printed photo, screen replay, mask) from ordinary camera frames. The user doesn't have to blink or turn their head, and nothing leaves the device.
 
@@ -11,9 +13,9 @@ On-device **face liveness (anti-spoofing) detection** for React Native. It check
 ## Installation
 
 ```sh
-npm install react-native-face-liveness
+npm install @solankivishal/react-native-face-liveness
 # or
-yarn add react-native-face-liveness
+yarn add @solankivishal/react-native-face-liveness
 ```
 
 ```sh
@@ -38,7 +40,7 @@ Requirements: React Native 0.80+ with the New Architecture, iOS 15.1+, Android A
 ### Camera component
 
 ```tsx
-import { FaceLivenessCamera } from 'react-native-face-liveness';
+import { FaceLivenessCamera } from '@solankivishal/react-native-face-liveness';
 
 <FaceLivenessCamera
   style={{ flex: 1 }}
@@ -72,7 +74,7 @@ The camera pauses automatically when the app goes to the background.
 ### Photos
 
 ```ts
-import { FaceLiveness } from 'react-native-face-liveness';
+import { FaceLiveness } from '@solankivishal/react-native-face-liveness';
 
 const faces = await FaceLiveness.detectInFile(photoUri); // path, file:// or content:// URI
 if (faces.length > 0) {

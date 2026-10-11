@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "react-native-face-liveness": ["./src/index"]
+      "@solankivishal/react-native-face-liveness": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

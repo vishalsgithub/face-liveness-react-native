@@ -13,7 +13,7 @@ import {
   FaceLivenessCamera,
   type CameraError,
   type LivenessResult,
-} from 'react-native-face-liveness';
+} from '@solankivishal/react-native-face-liveness';
 
 const REQUIRED_LIVE_FRAMES = 8;
 

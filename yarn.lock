@@ -2351,6 +2351,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@solankivishal/react-native-face-liveness@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@solankivishal/react-native-face-liveness@workspace:."
+  dependencies:
+    "@jest/globals": "npm:^29.7.0"
+    "@react-native/babel-preset": "npm:0.86.2"
+    "@react-native/jest-preset": "npm:0.86.2"
+    "@types/react": "npm:^19.2.0"
+    del-cli: "npm:^7.0.0"
+    jest: "npm:^29.7.0"
+    react: "npm:19.2.3"
+    react-native: "npm:0.86.2"
+    react-native-builder-bob: "npm:^0.43.1"
+    turbo: "npm:^2.10.8"
+    typescript: "npm:^6.0.3"
+  peerDependencies:
+    react: "*"
+    react-native: ">=0.80.0"
+  languageName: unknown
+  linkType: soft
+
 "@turbo/darwin-64@npm:2.11.7":
   version: 2.11.7
   resolution: "@turbo/darwin-64@npm:2.11.7"
@@ -6082,27 +6103,6 @@ __metadata:
     react-native: "npm:0.86.2"
     react-native-builder-bob: "npm:^0.43.1"
     react-native-monorepo-config: "npm:^0.4.0"
-  languageName: unknown
-  linkType: soft
-
-"react-native-face-liveness@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "react-native-face-liveness@workspace:."
-  dependencies:
-    "@jest/globals": "npm:^29.7.0"
-    "@react-native/babel-preset": "npm:0.86.2"
-    "@react-native/jest-preset": "npm:0.86.2"
-    "@types/react": "npm:^19.2.0"
-    del-cli: "npm:^7.0.0"
-    jest: "npm:^29.7.0"
-    react: "npm:19.2.3"
-    react-native: "npm:0.86.2"
-    react-native-builder-bob: "npm:^0.43.1"
-    turbo: "npm:^2.10.8"
-    typescript: "npm:^6.0.3"
-  peerDependencies:
-    react: "*"
-    react-native: "*"
   languageName: unknown
   linkType: soft
 
