@@ -60,13 +60,27 @@ class FaceLivenessModule(reactContext: ReactApplicationContext) :
     }
   }
 
-  /** Opens a file path, file:// or content:// URI. */
+  /**
+   * Opens a file path, file:// / content:// / android.resource:// URI, or the resource
+   * name React Native uses for bundled images in release builds (e.g. "assets_face").
+   */
   private fun open(path: String): InputStream {
+    val context = reactApplicationContext
     val uri = Uri.parse(path)
     return when (uri.scheme) {
-      "content", "file" -> reactApplicationContext.contentResolver.openInputStream(uri)
+      "content", "file", "android.resource" -> context.contentResolver.openInputStream(uri)
         ?: throw IllegalArgumentException("Could not open $path")
-      else -> File(path).inputStream()
+      null -> {
+        val file = File(path)
+        if (file.exists()) return file.inputStream()
+        val name = path.substringBeforeLast('.').replace(Regex("[^A-Za-z0-9_]"), "_").lowercase()
+        val id = sequenceOf("drawable", "raw")
+          .map { context.resources.getIdentifier(name, it, context.packageName) }
+          .firstOrNull { it != 0 }
+          ?: throw IllegalArgumentException("No file or bundled image named $path")
+        context.resources.openRawResource(id)
+      }
+      else -> throw IllegalArgumentException("Unsupported URI: $path (use a file path, file:// or content:// URI)")
     }
   }
 

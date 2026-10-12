@@ -31,7 +31,17 @@ cd ios && pod install
 
 **Android:** nothing to add. The camera permission is declared by the library and requested at runtime by `<FaceLivenessCamera />`. The first Android build downloads the prebuilt ncnn engine (about 21 MB) into `~/.face_liveness`; set `FACE_LIVENESS_NCNN_DIR` to use another folder.
 
-**Expo:** works in a development build (`npx expo prebuild`), not in Expo Go. Add the camera text under `ios.infoPlist.NSCameraUsageDescription` in `app.json`.
+**Expo:** add the config plugin to `app.json`; it sets the iOS camera permission text and the Android camera permission for you:
+
+```json
+{
+  "expo": {
+    "plugins": ["@solankivishal/react-native-face-liveness"]
+  }
+}
+```
+
+To use your own permission text: `["@solankivishal/react-native-face-liveness", { "cameraPermission": "…" }]`. Then run `npx expo prebuild`, or build with EAS. This package contains native code, so it works in development builds and EAS builds, not in Expo Go. Requires Expo SDK 54 or later.
 
 Requirements: React Native 0.80+ with the New Architecture, iOS 15.1+, Android API 24+.
 
@@ -83,7 +93,7 @@ if (faces.length > 0) {
 }
 ```
 
-The photo's EXIF orientation is applied. Options: `{ livenessThreshold, allFaces }`.
+The photo's EXIF orientation is applied. On Android, bundled images (`require('./face.jpg')`, e.g. through `expo-asset`) work as well. Options: `{ livenessThreshold, allFaces }`.
 
 A single frame is noisy. For a verification flow, rely on `onVerified`, which requires several consecutive live frames.
 

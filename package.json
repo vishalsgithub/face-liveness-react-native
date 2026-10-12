@@ -1,6 +1,6 @@
 {
   "name": "@solankivishal/react-native-face-liveness",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "On-device face liveness (anti-spoofing) detection for React Native. Drop-in camera component that tells real faces from photos, screens and masks, powered by ncnn. New Architecture.",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
@@ -19,6 +19,8 @@
     "ios",
     "cpp",
     "models",
+    "plugin",
+    "app.plugin.js",
     "*.podspec",
     "react-native.config.js",
     "!ios/build",
@@ -30,7 +32,8 @@
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__",
-    "!**/.*"
+    "!**/.*",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "example": "yarn workspace react-native-face-liveness-example",
@@ -50,7 +53,8 @@
     "camera",
     "new-architecture",
     "fabric",
-    "turbo-module"
+    "turbo-module",
+    "expo"
   ],
   "repository": {
     "type": "git",
@@ -80,7 +84,8 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": ">=0.80.0"
+    "react-native": ">=0.80.0",
+    "expo": ">=54.0.0"
   },
   "workspaces": [
     "example"
@@ -143,5 +148,10 @@
       "jest"
     ],
     "version": "0.63.1"
+  },
+  "peerDependenciesMeta": {
+    "expo": {
+      "optional": true
+    }
   }
 }
